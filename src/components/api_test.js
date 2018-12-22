@@ -9,7 +9,8 @@ class Api_test extends Component {
 
     this.state = {
       chartData: [],
-      isLoading: false
+      isLoading: false,
+      dates: []
     };
   }
 
@@ -17,11 +18,26 @@ class Api_test extends Component {
       this.setState({ isLoading: true});
     fetch(API)
       .then(response => response.json())
-      .then(data => this.setState({ chartData: data, isLoading: false }));
+      .then(data => data.map(bar =>(
+        {
+          date: `${bar.startBlockTimestamp}`,
+          open: `${bar.open}`,
+          high: `${bar.high}`,
+          low:  `${bar.low}`,
+          close: `${bar.close}`
+        }
+      )))
+      .then(bar => this.setState({ chartData: bar, isLoading: false }));
+
+
+      /*
+      .then(this.chartData.map(hit => hit.startBlockTimestamp)
+      .then(hit.open) 
+      */
   }
 
   render() {
-    const { chartData, isLoading } = this.state;
+    const { chartData, isLoading, dates } = this.state;
 
     if(isLoading) {
         return<p> Loading ... </p>
@@ -29,10 +45,12 @@ class Api_test extends Component {
 
     return (
         <div>
-       <p>{JSON.stringify(chartData.data)}</p> 
+          <p>{dates}</p>
+       <p>Hello Wold</p> 
       <ul>
         {chartData.map(hit =>
           <li key={hit.startBlockTimestamp}>
+            <p>blocktime: {hit.date}</p>
             <p>Open: {hit.open}</p>
             <p>High: {hit.high}</p>
           </li>

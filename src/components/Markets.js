@@ -11,23 +11,28 @@ import Route from 'react-router-dom/Route';
 // import OrderHistory from './OrderHistory';
 // import OrderBook from './OrderBook';
 // import TestOrders from './testOrders';
-import Charts_test from './Charts_test';
+//import Charts_test from './Charts_test';
 //import { AssetBuyer } from '@0x/asset-buyer';
 //import Instant from '0x-instant-component';
 import Instant from './0xinstant';
-import Api_test from './api_test';
+//import Api_test from './api_test';
+//import ApiTest from './apiTest';
+//import Charts1 from './charts1';
+//import Chart1 from './chart2';
+import Chart1 from './chart2';
+
+
+
 
 
 class Markets extends Component {
     render(){
         return(
       <div>
-        <Charts_test />
-        <p>Hello World</p>
-        <Api_test />
-    
+        <Chart1 />
 
-</div>
+
+       </div>
         );
     };
 }

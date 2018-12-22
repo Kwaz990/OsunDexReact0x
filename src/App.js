@@ -7,9 +7,7 @@ import Web3 from 'web3';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import NavigationBar from './components/NavigationBar';
-import UnlockMetaMask from './components/unlockMetaMask'
-
-
+import UnlockMetaMask from './components/unlockMetaMask';
 
 
 
