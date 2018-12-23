@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import NavigationBar from './components/NavigationBar';
 import UnlockMetaMask from './components/unlockMetaMask';
-
+import AvaialbleMarkets from './components/AvailableMarkets';
 
 
 class App extends Component {
@@ -21,6 +21,7 @@ class App extends Component {
         <Web3Provider>
           <header className="DashboardContainer-header">
             <Description />
+            <AvaialbleMarkets />
             <UnlockMetaMask />
           </header>
         </Web3Provider>

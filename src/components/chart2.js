@@ -58,10 +58,6 @@ class Chart1 extends Component {
                     ))
 
                 return x;
-                return [
-                    [500, [6593.34, 6600, 6582.63, 6600]],
-                    [5000, [6595.16, 6604.76, 6590.73, 6593.86]]
-                ]
             }).then(function (bar) {
                 graph.setState({
                     isLoading: false,
@@ -87,7 +83,7 @@ class Chart1 extends Component {
                             options={this.state.options}              
                             series={this.state.series}
                             type="candlestick"
-                            width="500"
+                            width="600"
                         />
                     </div>
                 </div>
