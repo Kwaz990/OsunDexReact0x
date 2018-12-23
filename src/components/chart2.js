@@ -13,6 +13,7 @@ class Chart1 extends Component {
     constructor(props) {
         super(props);
         this.state = {
+
             isLoading: false,
             options: {
                 chart: {
@@ -41,40 +42,50 @@ class Chart1 extends Component {
                 })
 */
     componentDidMount() {
+        var marketLink = this.props.market;
+        // var marketLink="ZRX-WETH";
         var graph = this;
-        fetch('https://api.radarrelay.com/v2/markets/ZRX-WETH/candles')
-            .then(function (response) {
-                
-                return response.json();
-            }).then(function (data) {
-                console.log(data.length)
-                var x = data.map(bar => (
-                    [bar.startBlockTimestamp, [
-                        Number(bar.open),
-                        Number(bar.high),
-                        Number(bar.low),
-                        Number(bar.close)
-                    ]]
-                    ))
+        var url ="https://api.radarrelay.com/v2/markets/" + marketLink + "/candles"
+        var oldurl = "https://api.radarrelay.com/v2/markets/ZRX-WETH/candles"
+        console.log(marketLink)
+        if (typeof(marketLink) === 'string' && marketLink !== 'undefined') {
+            console.log("True", marketLink)
+            fetch(url)
+        // fetch("https://api.radarrelay.com/v2/markets/" + marketLink + "/candles")
+                .then(function (response) {
+                    console.log(response.headers)
+                    // console.log(response.text())
+                    return response.json();
+                }).then(function (data) {
+                    var x = data.map(bar => (
+                        [bar.startBlockTimestamp, [
+                            Number(bar.open),
+                            Number(bar.high),
+                            Number(bar.low),
+                            Number(bar.close)
+                        ]]
+                        ))
 
-                return x;
-            }).then(function (bar) {
-                graph.setState({
-                    isLoading: false,
-                    options: {
-                        chart: {
-                            id: "candlestick"
+                    return x;
+                }).then(function (bar) {
+                    graph.setState({
+                        isLoading: false,
+                        options: {
+                            chart: {
+                                id: "candlestick"
+                            },
                         },
-                    },
-                    series: [{
-                        data: bar
-                    }]
-                });
-            })
+                        series: [{
+                            data: bar
+                        }]
+                    });
+                })
+            }
         };
 
 
-    render() {
+    render(props) {
+      const marketRedirect = this.props.marketRedirect;
         return (
             <div className="app">
                 <div className="row">

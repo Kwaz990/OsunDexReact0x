@@ -22,16 +22,22 @@ import Instant from './0xinstant';
 import Chart1 from './chart2';
 
 
-
+/*
+<Chart1 y="" render ={x => (
+            <Chart1 marketRedirect ={redirect} />
+        )} />
+*/
 
 
 class Markets extends Component {
+    constructor(props) {
+        super(props);
+    }
     render(){
+        var value = String(this.props.market)
         return(
       <div>
-        <Chart1 />
-
-
+          <Chart1 market={value} />
        </div>
         );
     };

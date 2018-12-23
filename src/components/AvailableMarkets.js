@@ -32,13 +32,11 @@ class AvailableMarkets extends Component {
         .then(function(response) {
             return response.json();
         }).then(function(parsedJSON) {
-            console.log(parsedJSON);
             var x = parsedJSON.map(market => (
            [
              market.id,
              market.displayName
            ]))
-           console.log(x);
            return x;
            }).then(function(market) {
             this.setState({
@@ -47,7 +45,9 @@ class AvailableMarkets extends Component {
            })
           }.bind(this));}
 
-
+        //   render={props => (
+        //     `${market[0]}`
+        // )}/>
               //Loop through list of allowed tokens
       //using the token ABI & contract address
       //call the balanceOf method to see if this
@@ -79,7 +79,6 @@ class AvailableMarkets extends Component {
 
         for (var i = 0; i < this.state.items.length; i ++) {
             var obj = this.state.items[i];
-            console.log(obj.id);
 
         };
         fetch('https://api.radarrelay.com/v2/markets/ZRX-WETH/stats').then(results => {
@@ -114,8 +113,10 @@ class AvailableMarkets extends Component {
                         <tr data-type="h">
                         {radarMarkets.map(market => (
                                 <li key={market[0]}>
-                                <Link to = "/Markets/${market[0]}">{market[0]}</Link>
-                                <Route path="/Markets/${market[0]}" component={Markets}/>                              
+                                <Link to = {"/Markets/" + `${market[0]}`}>{market[0]}</Link>
+                                <Route path={"/Markets/" + `${market[0]}`} render = {marketRedirect => (
+                                    <Markets market={market[0]} marketRedirect = {marketRedirect} /> 
+                                )} />                              
                                 </li>
                                 ))}
                             </tr>
